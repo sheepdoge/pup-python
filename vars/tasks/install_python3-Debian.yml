@@ -1,5 +1,5 @@
 ---
-- name: install python3 with apt
+- name: install python3 with pip
   apt:
     name: "{{ item }}"
     state: present
