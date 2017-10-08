@@ -1,5 +1,0 @@
----
-- name: install python3 with homebrew
-  homebrew:
-    name: python3
-    state: present
