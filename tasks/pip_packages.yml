@@ -3,6 +3,7 @@
   pip:
     name: "{{ item }}"
     executable: pip2
+    extra_args: --user
   with_items: "{{ pip2_to_install }}"
 
 - name: uninstall python2 pips
@@ -16,6 +17,7 @@
   pip:
     name: "{{ item }}"
     executable: pip3
+    extra_args: --user
   with_items: "{{ pip3_to_install }}"
 
 - name: uninstall python3 pips
@@ -24,4 +26,3 @@
     state: absent
     executable: pip3
   with_items: "{{ pip3_to_uninstall }}"
-
