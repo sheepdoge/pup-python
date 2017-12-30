@@ -1,7 +1,7 @@
 ---
-install_python3: "{{ pup_python_vars_install_python3 or false }}"
-install_python2: "{{ pup_python_vars_install_python2 or false }}"
-pip3_to_install: "{{ pup_python_vars_pip3_to_install | default([]) }}"
-pip2_to_install: "{{ pup_python_vars_pip2_to_install | default([]) }}"
-pip3_to_uninstall: "{{ pup_python_vars_pip3_to_uninstall | default([]) }}"
-pip2_to_uninstall: "{{ pup_python_vars_pip2_to_uninstall | default([]) }}"
+install_python3: "{{ pup_python_main_install_python3 or false }}"
+install_python2: "{{ pup_python_main_install_python2 or false }}"
+pip3_to_install: "{{ pup_python_main_pip3_to_install | default([]) }}"
+pip2_to_install: "{{ pup_python_main_pip2_to_install | default([]) }}"
+pip3_to_uninstall: "{{ pup_python_main_pip3_to_uninstall | default([]) }}"
+pip2_to_uninstall: "{{ pup_python_main_pip2_to_uninstall | default([]) }}"
