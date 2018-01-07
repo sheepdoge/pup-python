@@ -5,3 +5,5 @@ pip3_to_install: "{{ pup_python_main_pip3_to_install | default([]) }}"
 pip2_to_install: "{{ pup_python_main_pip2_to_install | default([]) }}"
 pip3_to_uninstall: "{{ pup_python_main_pip3_to_uninstall | default([]) }}"
 pip2_to_uninstall: "{{ pup_python_main_pip2_to_uninstall | default([]) }}"
+
+dotfile: "{{ pup_python_main_dotfile | default('~/.bashrc') }}"

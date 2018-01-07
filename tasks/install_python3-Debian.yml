@@ -8,3 +8,9 @@
   with_items:
     - python3
     - python3-pip
+
+- name: ensure local python3 pips are in path
+  lineinfile:
+    path: "{{ dotfile }}"
+    state: present
+    line: "[[ \":$PATH:\" != *\":$HOME/.local/bin:\"* ]] && PATH=\"$HOME/.local/bin:$PATH\" || true"
