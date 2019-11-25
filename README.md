@@ -3,7 +3,8 @@
 [sheepdoge](https://github.com/mattjmcnaughton/sheepdoge) for managing python
 installation.
 
-We only install Python3.
+We only install Python3. We also assume that the `python` and `pip` executables
+refer to `python3` and `pip3`.
 
 This pup also manages installing Pips. It supports both installing pips globally
 into the user-space and into a specified virtual environment.
