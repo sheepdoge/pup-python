@@ -19,6 +19,9 @@ galaxy_info:
     - name: MacOSX
       versions:
         - all
+    - name: FreeBSD
+      versions:
+        - all
 
   galaxy_tags:
     - sheepdoge

@@ -1,23 +1,13 @@
 ---
-- name: determine if python2 installed
-  command: which python2 && which pip2
-  register: python2_is_installed
-  failed_when: python2_is_installed.rc > 1
+- name: determine if python installed
+  command: which python && which pip
+  register: python_is_installed
+  failed_when: python_is_installed.rc > 1
   changed_when: no
 
-- name: install python2
-  include_tasks: install_python2-{{ ansible_os_family }}.yml
-  when: python2_is_installed.rc > 0 and install_python2
-
-- name: determine if python3 installed
-  command: which python3 && which pip3
-  register: python3_is_installed
-  failed_when: python3_is_installed.rc > 1
-  changed_when: no
-
-- name: install python3
-  include_tasks: install_python3-{{ ansible_os_family }}.yml
-  when: python3_is_installed.rc > 0 and install_python3
+- name: install python
+  include_tasks: install_python-{{ ansible_os_family }}.yml
+  when: python_is_installed.rc > 0
 
 - name: install pip packages
   include_tasks: pip_packages.yml

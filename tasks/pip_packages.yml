@@ -1,28 +1,38 @@
 ---
-- name: install python2 pips
+- name: install global python pips
   pip:
-    name: "{{ item }}"
-    executable: pip2
+    name: "{{ global_pip_to_install }}"
     extra_args: --user
-  with_items: "{{ pip2_to_install }}"
 
-- name: uninstall python2 pips
+- name: uninstall global python pips
   pip:
-    name: "{{ item }}"
+    name: "{{ global_pip_to_uninstall }}"
     state: absent
-    executable: pip2
-  with_items: "{{ pip2_to_uninstall }}"
 
-- name: install python3 pips
-  pip:
-    name: "{{ item }}"
-    executable: pip3
-    extra_args: --user
-  with_items: "{{ pip3_to_install }}"
+- name: ensure global python pips are in path
+  lineinfile:
+    path: "{{ dotfile }}"
+    state: present
+    line: "[[ \":$PATH:\" != *\":$HOME/.local/bin:\"* ]] && PATH=\"$HOME/.local/bin:$PATH\" || true"
 
-- name: uninstall python3 pips
-  pip:
-    name: "{{ item }}"
-    state: absent
-    executable: pip3
-  with_items: "{{ pip3_to_uninstall }}"
+- set_fact:
+    execute_virtualenv: "{{ virtualenv_pip_to_install | length > 0 }}"
+
+- block:
+  - name: install virtualenv python pips
+    pip:
+      name: "{{ virtualenv_pip_to_install }}"
+      virtualenv: "{{ virtualenv_path }}"
+
+  - name: uninstall virtualenv python pips
+    pip:
+      name: "{{ virtualenv_pip_to_uninstall }}"
+      virtualenv: "{{ virtualenv_path }}"
+
+  - name: ensure activating virtualenv when loading shell
+    lineinfile:
+      path: "{{ dotfile }}"
+      state: present
+      line: "source {{ virtualenv_path }}/bin/activate || true"
+
+  when: execute_virtualenv

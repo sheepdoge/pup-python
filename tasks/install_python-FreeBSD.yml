@@ -1,0 +1,7 @@
+---
+- name: install python
+  pkgng:
+    # The `python3` meta-port also contains pip.
+    name: python3
+    state: latest
+  become: true
