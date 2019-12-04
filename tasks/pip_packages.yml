@@ -3,11 +3,13 @@
   pip:
     name: "{{ global_pip_to_install }}"
     extra_args: --user
+  when: global_pip_to_install|length > 0
 
 - name: uninstall global python pips
   pip:
     name: "{{ global_pip_to_uninstall }}"
     state: absent
+  when: global_pip_to_uninstall|length > 0
 
 - name: ensure global python pips are in path
   lineinfile:
@@ -23,11 +25,13 @@
     pip:
       name: "{{ virtualenv_pip_to_install }}"
       virtualenv: "{{ virtualenv_path }}"
+    when: virtualenv_pip_to_install|length > 0
 
   - name: uninstall virtualenv python pips
     pip:
       name: "{{ virtualenv_pip_to_uninstall }}"
       virtualenv: "{{ virtualenv_path }}"
+    when: virtualenv_pip_to_uninstall|length > 0
 
   - name: ensure activating virtualenv when loading shell
     lineinfile:
