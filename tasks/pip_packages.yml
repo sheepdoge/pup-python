@@ -25,12 +25,14 @@
     pip:
       name: "{{ virtualenv_pip_to_install }}"
       virtualenv: "{{ virtualenv_path }}"
+      virtualenv_site_packages: yes
     when: virtualenv_pip_to_install|length > 0
 
   - name: uninstall virtualenv python pips
     pip:
       name: "{{ virtualenv_pip_to_uninstall }}"
       virtualenv: "{{ virtualenv_path }}"
+      virtualenv_site_packages: yes
     when: virtualenv_pip_to_uninstall|length > 0
 
   - name: ensure activating virtualenv when loading shell
