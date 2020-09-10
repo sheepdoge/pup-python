@@ -1,13 +1,9 @@
 ---
+# This pup is not responsible for installing Python.
 - name: determine if python installed
   command: which python && which pip
   register: python_is_installed
-  failed_when: python_is_installed.rc > 1
   changed_when: no
-
-- name: install python
-  include_tasks: install_python-{{ ansible_os_family }}.yml
-  when: python_is_installed.rc > 0
 
 - name: install pip packages
   include_tasks: pip_packages.yml
