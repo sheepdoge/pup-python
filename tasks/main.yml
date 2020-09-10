@@ -1,8 +1,11 @@
 ---
 # This pup is not responsible for installing Python.
 - name: determine if python installed
-  command: which python && which pip
-  register: python_is_installed
+  command: which python
+  changed_when: no
+
+- name: determine if pip installed
+  command: which pip
   changed_when: no
 
 - name: install pip packages
